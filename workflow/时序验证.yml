@@ -1,0 +1,208 @@
+app:
+  description: 对传入的时序列表进行验证，并返回错误信息
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 时序验证
+  use_icon_as_answer_icon: false
+dependencies: []
+kind: app
+version: 0.5.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: code
+      id: 1777431452076-source-1777431459422-target
+      source: '1777431452076'
+      sourceHandle: source
+      target: '1777431459422'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1777431459422-source-1777431463139-target
+      source: '1777431459422'
+      sourceHandle: source
+      target: '1777431463139'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 用户输入
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: final_temporal
+          max_length: 4096
+          options: []
+          placeholder: ''
+          required: true
+          type: paragraph
+          variable: final_temporal
+      height: 110
+      id: '1777431452076'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import re\nimport json\nfrom datetime import datetime\n\ndef main(final_temporal_relation:\
+          \ str) -> dict:\n    # ── 第一步：解码字面转义 + 提取 [ ... ] ───────────────────\n\
+          \    pattern = r'.*?</think>'\n    cleaned = re.sub(pattern, '', final_temporal_relation,\
+          \ flags=re.DOTALL).strip()\n\n    try:\n        cleaned = cleaned.encode('raw_unicode_escape').decode('unicode_escape')\n\
+          \    except Exception:\n        pass\n\n    match = re.search(r'\\[.*\\\
+          ]', cleaned, flags=re.DOTALL)\n    if not match:\n        return {\"result\"\
+          : \"未找到 JSON 数组\"}\n\n    raw = match.group(0)\n\n    # ── 第二步：解析 JSON ──────────────────────────────────────\n\
+          \    try:\n        records = json.loads(raw)\n    except json.JSONDecodeError\
+          \ as e:\n        return {\"result\": f\"JSON 解析失败: {e}\"}\n\n    # ── 第三步：逐条校验\
+          \ ───────────────────────────────────────\n    def parse_offset(offset_str:\
+          \ str) -> float:\n        if not offset_str or offset_str.strip() in (\"\
+          \", \"0\", \"0m\"):\n            return 0.0\n        s = offset_str.strip()\n\
+          \        sign = -1 if s.startswith('-') else 1\n        s = s.lstrip('+-')\n\
+          \        if s.endswith('d'):\n            return sign * float(s[:-1]) *\
+          \ 1440\n        elif s.endswith('h'):\n            return sign * float(s[:-1])\
+          \ * 60\n        elif s.endswith('m'):\n            return sign * float(s[:-1])\n\
+          \        return 0.0\n\n    def parse_dt(s: str) -> datetime:\n        return\
+          \ datetime.fromisoformat(s)\n\n    errors = []\n\n    for i, rec in enumerate(records):\n\
+          \        idx       = i + 1\n        态        = rec.get(\"时态\", \"\")\n \
+          \       发送时间  = rec.get(\"发送时间\", \"\")\n        时间戳    = rec.get(\"时间戳\"\
+          , \"\")\n        粗偏移    = rec.get(\"粗粒度时间偏移量\", \"\")\n        细偏移    =\
+          \ rec.get(\"细粒度时间偏移量\", \"\")\n\n        try:\n            t_send  = parse_dt(发送时间)\n\
+          \            t_stamp = parse_dt(时间戳)\n        except ValueError as e:\n\
+          \            errors.append(f\"第{idx}条：时间格式错误 ({e})\")\n            continue\n\
+          \n        coarse_min = parse_offset(粗偏移)\n        fine_min   = parse_offset(细偏移)\n\
+          \n        # 所有时态：细粒度偏移量必须 >= 0\n        if fine_min < 0:\n            errors.append(f\"\
+          第{idx}条 [{态}]：细粒度偏移量 '{细偏移}' 应大于或等于 0（当前解析为 {fine_min}m）\")\n\n        if\
+          \ 态 == \"Before\":\n            if coarse_min >= 0:\n                errors.append(f\"\
+          第{idx}条 [{态}]：粗粒度偏移量 '{粗偏移}' 应为负数（当前解析为 {coarse_min}m）\")\n            if\
+          \ t_stamp >= t_send:\n                errors.append(f\"第{idx}条 [{态}]：时间戳\
+          \ {时间戳} 应早于发送时间 {发送时间}\")\n\n        elif 态 == \"Overlap\":\n          \
+          \  if coarse_min != 0:\n                errors.append(f\"第{idx}条 [{态}]：粗粒度偏移量\
+          \ '{粗偏移}' 应为 0（当前解析为 {coarse_min}m）\")\n            if t_stamp < t_send:\n\
+          \                errors.append(f\"第{idx}条 [{态}]：时间戳 {时间戳} 应等于或晚于发送时间 {发送时间}\"\
+          )\n\n        elif 态 == \"After\":\n            if coarse_min <= 0:\n   \
+          \             errors.append(f\"第{idx}条 [{态}]：粗粒度偏移量 '{粗偏移}' 应为正数（当前解析为 {coarse_min}m）\"\
+          )\n            if t_stamp <= t_send:\n                errors.append(f\"\
+          第{idx}条 [{态}]：时间戳 {时间戳} 应晚于发送时间 {发送时间}\")\n\n    if errors:\n        return\
+          \ {\"result\": \"\\n\".join(errors)}\n\n    return {\"result\": \"格式无问题\"\
+          }"
+        code_language: python3
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1777431452076'
+          - final_temporal
+          value_type: string
+          variable: final_temporal_relation
+      height: 53
+      id: '1777431459422'
+      position:
+        x: 383
+        y: 282
+      positionAbsolute:
+        x: 383
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        outputs:
+        - value_selector:
+          - '1777431459422'
+          - result
+          value_type: string
+          variable: result
+        selected: false
+        title: 输出
+        type: end
+      height: 90
+      id: '1777431463139'
+      position:
+        x: 686
+        y: 282
+      positionAbsolute:
+        x: 686
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 103.5
+      y: 281.5
+      zoom: 1
+  rag_pipeline_variables: []

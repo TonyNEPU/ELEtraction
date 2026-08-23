@@ -1,0 +1,1604 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 时序生成DeepSeekReasoner
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.15@725407927b04e236212083d20e92830d60fa944e42cd357ef6902c160414f6f1
+    version: null
+kind: app
+version: 0.5.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: loop
+      id: 1777340550206-source-1777452407168-target
+      source: '1777340550206'
+      sourceHandle: source
+      target: '1777452407168'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: loop-start
+        targetType: agent
+      id: 1777452407168start-source-1777452517886-target
+      source: 1777452407168start
+      sourceHandle: source
+      target: '1777452517886'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: agent
+        targetType: code
+      id: 1777452517886-source-1777452697596-target
+      source: '1777452517886'
+      sourceHandle: source
+      target: '1777452697596'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: code
+        targetType: agent
+      id: 1777452697596-source-1777453098412-target
+      source: '1777452697596'
+      sourceHandle: source
+      target: '1777453098412'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: loop
+        targetType: end
+      id: 1777452407168-source-1777367209135-target
+      source: '1777452407168'
+      sourceHandle: source
+      target: '1777367209135'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: agent
+        targetType: code
+      id: 1777453098412-source-1777453709915-target
+      source: '1777453098412'
+      sourceHandle: source
+      target: '1777453709915'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: code
+        targetType: if-else
+      id: 1777453709915-source-1777454432559-target
+      source: '1777453709915'
+      sourceHandle: source
+      target: '1777454432559'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: if-else
+        targetType: code
+      id: 1777454432559-true-1777454731363-target
+      source: '1777454432559'
+      sourceHandle: 'true'
+      target: '1777454731363'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: code
+        targetType: assigner
+      id: 1777454731363-source-1777454842226-target
+      source: '1777454731363'
+      sourceHandle: source
+      target: '1777454842226'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: llm
+        targetType: if-else
+      id: 1777455753176-source-1777456141231-target
+      source: '1777455753176'
+      sourceHandle: source
+      target: '1777456141231'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: if-else
+        targetType: assigner
+      id: 1777456141231-true-1777456162993-target
+      source: '1777456141231'
+      sourceHandle: 'true'
+      target: '1777456162993'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: if-else
+        targetType: assigner
+      id: 1777456141231-false-1777456199294-target
+      source: '1777456141231'
+      sourceHandle: 'false'
+      target: '1777456199294'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: assigner
+        targetType: loop-end
+      id: 1777454842226-source-1777473836977-target
+      source: '1777454842226'
+      sourceHandle: source
+      target: '1777473836977'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: if-else
+        targetType: code
+      id: 1777454432559-false-1777904460153-target
+      source: '1777454432559'
+      sourceHandle: 'false'
+      target: '1777904460153'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: code
+        targetType: llm
+      id: 1777904460153-source-1777455753176-target
+      source: '1777904460153'
+      sourceHandle: source
+      target: '1777455753176'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: assigner
+        targetType: assigner
+      id: 1777456199294-source-1777456652778-target
+      source: '1777456199294'
+      sourceHandle: source
+      target: '1777456652778'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: code
+        targetType: code
+      id: 1777452697596-source-1780322895180-target
+      source: '1777452697596'
+      sourceHandle: source
+      target: '1780322895180'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: code
+        targetType: assigner
+      id: 1780322895180-source-1780323109615-target
+      source: '1780322895180'
+      sourceHandle: source
+      target: '1780323109615'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: assigner
+        targetType: if-else
+      id: 1777456162993-source-1780323140542-target
+      source: '1777456162993'
+      sourceHandle: source
+      target: '1780323140542'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: if-else
+        targetType: agent
+      id: 1780323140542-true-1780323164199-target
+      source: '1780323140542'
+      sourceHandle: 'true'
+      target: '1780323164199'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: agent
+        targetType: code
+      id: 1780323164199-source-1780323600164-target
+      source: '1780323164199'
+      sourceHandle: source
+      target: '1780323600164'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        sourceType: code
+        targetType: assigner
+      id: 1780323600164-source-1780323584543-target
+      source: '1780323600164'
+      sourceHandle: source
+      target: '1780323584543'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    nodes:
+    - data:
+        selected: false
+        title: 用户输入
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: context
+          max_length: 4096
+          options: []
+          placeholder: ''
+          required: true
+          type: paragraph
+          variable: context
+        - default: ''
+          hint: ''
+          label: msg_activities
+          max_length: 2048
+          options: []
+          placeholder: ''
+          required: true
+          type: paragraph
+          variable: msg_activities
+        - default: Before描述消息发出前已完成的动作。Overlap随消息同时发生的动作。After描述消息发出后的后续动作。d表示天，m表示分，s表示秒。
+          hint: ''
+          label: knowledge
+          max_length: 1024
+          options: []
+          placeholder: ''
+          required: false
+          type: paragraph
+          variable: knowledge
+        - default: 无
+          hint: ''
+          label: errors
+          max_length: 4096
+          options: []
+          placeholder: ''
+          required: false
+          type: paragraph
+          variable: errors
+        - default: '0'
+          hint: ''
+          label: errors_number
+          max_length: 48
+          options: []
+          placeholder: ''
+          required: false
+          type: number
+          variable: errors_number
+        - default: 无
+          hint: ''
+          label: result
+          max_length: 4096
+          options: []
+          placeholder: ''
+          required: false
+          type: paragraph
+          variable: result
+        - default: 无
+          hint: ''
+          label: history_result
+          max_length: 20000
+          options: []
+          placeholder: ''
+          required: false
+          type: paragraph
+          variable: history_result
+      height: 266
+      id: '1777340550206'
+      position:
+        x: -1740
+        y: 70
+      positionAbsolute:
+        x: -1740
+        y: 70
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        outputs:
+        - value_selector:
+          - '1777452407168'
+          - result
+          value_type: string
+          variable: result
+        selected: false
+        title: 输出
+        type: end
+      height: 90
+      id: '1777367209135'
+      position:
+        x: 3735.0881022164076
+        y: 245.82265511913653
+      positionAbsolute:
+        x: 3735.0881022164076
+        y: 245.82265511913653
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        break_conditions: []
+        error_handle_mode: terminated
+        height: 491
+        logical_operator: and
+        loop_count: 14
+        loop_variables:
+        - id: e25a5eaa-77da-4680-bdff-91f4de3f0b3d
+          label: errors
+          value:
+          - '1777340550206'
+          - errors
+          value_type: variable
+          var_type: string
+        - id: 68a34391-7397-4f1e-98d5-12dbd6c34e4c
+          label: erross_number
+          value:
+          - '1777340550206'
+          - errors_number
+          value_type: variable
+          var_type: number
+        - id: e1e4e30b-9a0d-4451-98b3-ebb44099e0f7
+          label: result
+          value:
+          - '1777340550206'
+          - result
+          value_type: variable
+          var_type: string
+        - id: 41bc3197-bf9b-4f16-a8d4-372409bbeb6e
+          label: history_result
+          value:
+          - '1777340550206'
+          - history_result
+          value_type: variable
+          var_type: string
+        selected: false
+        start_node_id: 1777452407168start
+        title: 循环
+        type: loop
+        width: 4164.799304762839
+      height: 491
+      id: '1777452407168'
+      position:
+        x: -981.4124477629089
+        y: 223.12501401468842
+      positionAbsolute:
+        x: -981.4124477629089
+        y: 223.12501401468842
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 4165
+      zIndex: 1
+    - data:
+        desc: ''
+        isInLoop: true
+        selected: false
+        title: ''
+        type: loop-start
+      draggable: false
+      height: 48
+      id: 1777452407168start
+      parentId: '1777452407168'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: -957.4124477629089
+        y: 291.1250140146884
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-loop-start
+      width: 44
+      zIndex: 1002
+    - data:
+        agent_parameters:
+          instruction:
+            type: constant
+            value: "角色设定\n\r你是一个时序推理领域的专家，拥有文本语义理解能力、时序推理能力。你的核心任务是基于消息发送时间，从即时消息中推断出活动之间的时序关系，并为它们分配准确的时间戳。\n\
+              \r\r规划能力\r\n基于消息上下文(格式为“消息id,消息内容,消息发送时间”)和消息抽取出的活动(格式为“消息id,活动”)，按照以下流程生成时间戳。\n\
+              \r1.粗粒度时间偏移量生成\r\n1.1 时态分类：参考给出的时序关系知识，分析语句时态，将活动划分为Before、Overlap、After三类时态。\n\
+              \r1.2 计算粗粒度时间偏移量：Before、After对应的偏移量符号为正号（+）、负号（-），Overlap无粗粒度偏移量。\n\
+              -有明确时序词（如“昨天”），直接转为粗粒度时间偏移量（如 -24h）。\r\n-无时序词，根据上下文语义和常识估算。例如：快递已经发货（可以设为\
+              \ -1d ）。\r\n1.3 工具调用：首先给出对应的粗粒度时间偏移量，生成初步的时序关系表initial_temporal：[{消息id,活动,发送时间,时态,粗粒度时间偏移量},...]，之后将消息发送时间戳msg_time和粗粒度时间偏移量coarse_offset作为参数传入coarse_timestamp_generation工具，获取初步时间戳，构建初步的时序关系表initial_temporal：[{消息id,活动,发送时间,时态,粗粒度时间偏移量,时间戳},...]\n\
+              \r\r2.细粒度时间偏移量生成\n\r2.1 计算细粒度时间偏移量：对initial_temporal中活动，为了避免相同粗粒度时间偏移量导致时间戳相同，在上下文语境中，根据语义、因果关系或常识（如：先登录再登出），为各活动分配不断递增的正值细粒度时间偏移量（如\
+              \ 1m，2m，1s，2s），从而区分先后顺序。\n\r2.2 调用工具更新时序关系表：调用fine_timestamp_generation工具，传入initial_temporal中的时间戳timestamp和细粒度时间偏移量fine_offset，更新原先的时间戳，形成最终时间戳，并形成最终的时序关系表final_temporal。\n\
+              3.结果输出：只按照键值对的格式输出最终的时序关系表final_temporal，不需要输出其它内容，其格式为[{消息id,活动,发送时间,时态,粗粒度时间偏移量,细粒度时间偏移量,时间戳},...]\r\
+              \r\n记忆能力\r\n历史错误信息：若历史错误信息非空，说明存在历史错误信息，请先分析该历史经验并重新生成时序关系表final_temporal_relation。如果没有错误，则输出时序关系表final_temporal，若存在错误分析的内容，如瓶颈类型、分析依据和建议，这些信息是针对时序推理陷入瓶颈时给出的，优先参考。\n\
+              \r\r\r\n\r"
+          maximum_iterations:
+            type: constant
+            value: 8
+          model:
+            type: constant
+            value:
+              completion_params:
+                max_tokens: 18000
+                reasoning_effort: high
+              mode: chat
+              model: deepseek-reasoner
+              model_type: llm
+              provider: langgenius/deepseek/deepseek
+              type: model-selector
+          query:
+            type: constant
+            value: "我会为你提供所需的数据，请逐步推理，得出验证结论。\n\r消息上下文：{{#1777340550206.context#}}\n\
+              各消息对应的活动：{{#1777340550206.msg_activities#}}\n时序关系知识：{{#1777340550206.knowledge#}}\r\
+              \n历史错误信息：{{#1777452407168.errors#}}"
+          tools:
+            type: constant
+            value:
+            - enabled: true
+              extra:
+                description: 根据时间戳timestamp和粗粒度时间偏移量coarse_offset计算新的时间
+              parameters:
+                coarse_offset:
+                  auto: 1
+                  value: null
+                timestamp:
+                  auto: 1
+                  value: null
+              provider_name: 8fc4178c-ce22-4811-905c-d011e913be78
+              provider_show_name: 粗粒度时间计算工具
+              schemas:
+              - auto_generate: null
+                default: ''
+                form: llm
+                human_description:
+                  en_US: 时间戳
+                  ja_JP: 时间戳
+                  pt_BR: 时间戳
+                  zh_Hans: 时间戳
+                label:
+                  en_US: timestamp
+                  ja_JP: timestamp
+                  pt_BR: timestamp
+                  zh_Hans: timestamp
+                llm_description: 时间戳
+                max: null
+                min: null
+                name: timestamp
+                options: []
+                placeholder:
+                  en_US: ''
+                  ja_JP: ''
+                  pt_BR: ''
+                  zh_Hans: ''
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: ''
+                form: llm
+                human_description:
+                  en_US: 粗粒度时间偏移量
+                  ja_JP: 粗粒度时间偏移量
+                  pt_BR: 粗粒度时间偏移量
+                  zh_Hans: 粗粒度时间偏移量
+                label:
+                  en_US: coarse_offset
+                  ja_JP: coarse_offset
+                  pt_BR: coarse_offset
+                  zh_Hans: coarse_offset
+                llm_description: 粗粒度时间偏移量
+                max: null
+                min: null
+                name: coarse_offset
+                options: []
+                placeholder:
+                  en_US: ''
+                  ja_JP: ''
+                  pt_BR: ''
+                  zh_Hans: ''
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              settings: {}
+              tool_description: 根据时间戳timestamp和粗粒度时间偏移量coarse_offset计算新的时间
+              tool_label: 粗粒度时间计算工具
+              tool_name: coarse_timestamp_generation
+              type: workflow
+            - enabled: true
+              extra:
+                description: 根据传入的timestamp时间戳和fine_offset细粒度时间偏移量计算新的时间戳
+              parameters:
+                fine_offset:
+                  auto: 1
+                  value: null
+                timestamp:
+                  auto: 1
+                  value: null
+              provider_name: fd77529d-0263-4e79-91f0-5608855d25a9
+              provider_show_name: 细粒度时间计算工具
+              schemas:
+              - auto_generate: null
+                default: ''
+                form: llm
+                human_description:
+                  en_US: 时间戳
+                  ja_JP: 时间戳
+                  pt_BR: 时间戳
+                  zh_Hans: 时间戳
+                label:
+                  en_US: timestamp
+                  ja_JP: timestamp
+                  pt_BR: timestamp
+                  zh_Hans: timestamp
+                llm_description: 时间戳
+                max: null
+                min: null
+                name: timestamp
+                options: []
+                placeholder:
+                  en_US: ''
+                  ja_JP: ''
+                  pt_BR: ''
+                  zh_Hans: ''
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: ''
+                form: llm
+                human_description:
+                  en_US: 细粒度时间偏移量
+                  ja_JP: 细粒度时间偏移量
+                  pt_BR: 细粒度时间偏移量
+                  zh_Hans: 细粒度时间偏移量
+                label:
+                  en_US: fine_offset
+                  ja_JP: fine_offset
+                  pt_BR: fine_offset
+                  zh_Hans: fine_offset
+                llm_description: 细粒度时间偏移量
+                max: null
+                min: null
+                name: fine_offset
+                options: []
+                placeholder:
+                  en_US: ''
+                  ja_JP: ''
+                  pt_BR: ''
+                  zh_Hans: ''
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              settings: {}
+              tool_description: 根据传入的timestamp时间戳和fine_offset细粒度时间偏移量计算新的时间戳
+              tool_label: 细粒度时间计算工具
+              tool_name: fine_timestamp_generation
+              type: workflow
+        agent_strategy_label: FunctionCalling
+        agent_strategy_name: function_calling
+        agent_strategy_provider_name: langgenius/agent/agent
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        meta:
+          minimum_dify_version: 1.7.0
+          version: 0.0.2
+        output_schema: {}
+        plugin_unique_identifier: langgenius/agent:0.0.37@a5dcc6ea00bca23439b49ff7d65704f3f5dd6ce2ca353205e62278e2148d84b6
+        selected: false
+        title: Agent 3
+        tool_node_version: '2'
+        type: agent
+      height: 189
+      id: '1777452517886'
+      parentId: '1777452407168'
+      position:
+        x: 128
+        y: 66.33752420771447
+      positionAbsolute:
+        x: -853.4124477629089
+        y: 289.4625382224029
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        code: "import re\n\ndef main(agent_result: str) -> str:\n    # 第一步：过滤掉 </think>\
+          \ 及之前的内容\n    pattern = r'.*?</think>'\n    result1 = re.sub(pattern, '',\
+          \ agent_result, flags=re.DOTALL).strip()\n\n    # 第二步：提取 [ ] 包括的内容（含括号本身）\n\
+          \    match = re.search(r'\\[.*?\\]', result1, flags=re.DOTALL)\n    result2\
+          \ = match.group(0) if match else \"\"\n\n    return {\n        \"result\"\
+          : result2\n    }"
+        code_language: python3
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 时序生成过滤
+        type: code
+        variables:
+        - value_selector:
+          - '1777452517886'
+          - text
+          value_type: string
+          variable: agent_result
+      height: 53
+      id: '1777452697596'
+      parentId: '1777452407168'
+      position:
+        x: 431
+        y: 68
+      positionAbsolute:
+        x: -550.4124477629089
+        y: 291.1250140146884
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        agent_parameters:
+          instruction:
+            type: constant
+            value: "角色设定\n\r你是一个时序推理领域的专家。你的核心任务是严格审核时序关系表，识别其中的逻辑矛盾和违反常识的错误。\r\r\n\
+              规划能力 \r\n1. 规则校验：\n1.1各活动的时间戳不能相同\n1.2调用structured_validation工具，将时序关系表final_temporal作为参数传入，进行审核。\n\
+              \r\r2. 逻辑校验：结合消息内容及上下文，对时序关系表final_temporal进行逻辑校验。\n\r2.1 时序词校验：检验活动发生时间是否符合消息中的时序词。例如“昨天提交了申请”。若“提交申请”的时间晚于消息发送时间，则违反时序词“昨天”的约束。\r\
+              \n2.2 语义校验：若无时序词，则依据语义判断活动先后关系。例如“我正在上传附件，系统突然崩溃了”。语义表明“上传附件”应早于“系统崩溃”，若时间相反则为错误。\r\
+              \n2.3 因果校验：检查活动之间的因果顺序是否与活动发生时间顺序一致，避免逻辑冲突。例如“客户投诉后，客服开始调查”。因果关系为“投诉\
+              \ → 调查”，若调查时间早于投诉时间，则存在因果冲突。\r\n2.4 常识校验：判断生成的时间戳是否符合现实常识，确保活动时间间隔合理。例如“更新手机后登录账户”。更新手机通常耗时较长，若登录时间仅早或晚几秒，则不符合常识。\n\
+              3.错误信息生成\r\n生成错误信息时，需要与历史错误信息进行比对，若当前错误信息已经存在，则不再重复生成；若不存在，则在历史错误信息的基础上生成新的错误信息，错误信息需要明确消息id、活动名称、错误原因，并按\
+              \ 1. 2. 3. 编号输出。\r例如：1.在消息id为2582的消息中，根据语义判断，活动 update 应发生在 login 之前，但\
+              \ update 的发生时间晚于 login，存在语义冲突。\n4.结果输出\n如果没有错误，则输出时序关系表final_temporal，如果有问题，则进行错误信息生成\n\
+              如果\r\r\n记忆能力\r\n历史错误信息：若历史错误信息非空，先判断此次是否还存在这些问题。若存在错误分析的内容，如瓶颈类型、分析依据和建议，这些信息是针对时序推理陷入瓶颈时给出的，优先参考。\r\
+              \n\r"
+          model:
+            type: constant
+            value:
+              completion_params:
+                max_tokens: 18000
+                reasoning_effort: high
+              mode: chat
+              model: deepseek-reasoner
+              model_type: llm
+              provider: langgenius/deepseek/deepseek
+              type: model-selector
+          query:
+            type: constant
+            value: "我会为你提供所需的数据，请逐步推理，得出验证结论。\n\r消息上下文:{{#1777340550206.context#}}\n\
+              时序关系表:{{#1777452697596.result#}}\r\n时序知识:{{#1777340550206.knowledge#}}\n\
+              历史错误信息：{{#1777452407168.errors#}}\r"
+          tools:
+            type: constant
+            value:
+            - enabled: true
+              extra:
+                description: 对传入的时序关系列表进行验证，并返回错误信息
+              parameters:
+                final_temporal:
+                  auto: 1
+                  value: null
+              provider_name: 05527ee4-3ea3-4f22-bcde-ba7bcf056008
+              provider_show_name: 时序验证
+              schemas:
+              - auto_generate: null
+                default: ''
+                form: llm
+                human_description:
+                  en_US: 时序里关系表
+                  ja_JP: 时序里关系表
+                  pt_BR: 时序里关系表
+                  zh_Hans: 时序里关系表
+                label:
+                  en_US: final_temporal
+                  ja_JP: final_temporal
+                  pt_BR: final_temporal
+                  zh_Hans: final_temporal
+                llm_description: 时序里关系表
+                max: null
+                min: null
+                name: final_temporal
+                options: []
+                placeholder:
+                  en_US: ''
+                  ja_JP: ''
+                  pt_BR: ''
+                  zh_Hans: ''
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              settings: {}
+              tool_description: 对传入的时序关系列表进行验证，并返回错误信息
+              tool_label: 时序验证
+              tool_name: structured_validation
+              type: workflow
+        agent_strategy_label: FunctionCalling
+        agent_strategy_name: function_calling
+        agent_strategy_provider_name: langgenius/agent/agent
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        meta:
+          minimum_dify_version: 1.7.0
+          version: 0.0.2
+        output_schema: {}
+        plugin_unique_identifier: langgenius/agent:0.0.37@a5dcc6ea00bca23439b49ff7d65704f3f5dd6ce2ca353205e62278e2148d84b6
+        selected: false
+        title: Agent 4
+        tool_node_version: '2'
+        type: agent
+      height: 189
+      id: '1777453098412'
+      parentId: '1777452407168'
+      position:
+        x: 723.8312378961427
+        y: 69.66247579228553
+      positionAbsolute:
+        x: -257.58120986676613
+        y: 292.78748980697395
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        code: "import re\n\ndef main(agent_result: str) -> dict:\n    # 第一步：过滤掉 </think>\
+          \ 及之前的内容\n    pattern = r'.*?</think>'\n    result1 = re.sub(pattern, '',\
+          \ agent_result, flags=re.DOTALL).strip()\n\n    # 第二步：提取 [ ] 包括的内容（含括号本身）\n\
+          \    match = re.search(r'\\[.*\\]', result1, flags=re.DOTALL)\n\n    if\
+          \ match:\n        return {\"result\": \"是\"}\n    else:\n        return\
+          \ {\"result\": \"否\"}"
+        code_language: python3
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 时序验证判定
+        type: code
+        variables:
+        - value_selector:
+          - '1777453098412'
+          - text
+          value_type: string
+          variable: agent_result
+      height: 53
+      id: '1777453709915'
+      parentId: '1777452407168'
+      position:
+        x: 1026
+        y: 68.1687621038572
+      positionAbsolute:
+        x: 44.58755223709113
+        y: 291.2937761185456
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: db8ae578-1190-4e7b-b732-2fedb6662d1c
+            value: 是
+            varType: string
+            variable_selector:
+            - '1777453709915'
+            - result
+          id: 'true'
+          logical_operator: and
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 125
+      id: '1777454432559'
+      parentId: '1777452407168'
+      position:
+        x: 1329
+        y: 69
+      positionAbsolute:
+        x: 347.58755223709113
+        y: 292.1250140146884
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        code: "import re\n\ndef main(agent_result: str) -> str:\n    # 第一步：过滤掉 </think>\
+          \ 及之前的内容\n    pattern = r'.*?</think>'\n    result1 = re.sub(pattern, '',\
+          \ agent_result, flags=re.DOTALL).strip()\n\n    # 第二步：提取 [ ] 包括的内容（含括号本身）\n\
+          \    match = re.search(r'\\[.*?\\]', result1, flags=re.DOTALL)\n    result2\
+          \ = match.group(0) if match else \"\"\n\n    return {\n        \"result\"\
+          : result2\n    }"
+        code_language: python3
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 3
+        type: code
+        variables:
+        - value_selector:
+          - '1777453098412'
+          - text
+          value_type: string
+          variable: agent_result
+      height: 53
+      id: '1777454731363'
+      parentId: '1777452407168'
+      position:
+        x: 1632
+        y: 69
+      positionAbsolute:
+        x: 650.5875522370911
+        y: 292.1250140146884
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1777452697596'
+          - result
+          variable_selector:
+          - '1777452407168'
+          - result
+          write_mode: over-write
+        loop_id: '1777452407168'
+        selected: false
+        title: 变量赋值
+        type: assigner
+        version: '2'
+      height: 85
+      id: '1777454842226'
+      parentId: '1777452407168'
+      position:
+        x: 1935
+        y: 68
+      positionAbsolute:
+        x: 953.5875522370911
+        y: 291.1250140146884
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        model:
+          completion_params:
+            max_tokens: 10000
+            temperature: 0.2
+          mode: chat
+          name: deepseek-chat
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: e15faa9a-c3a7-427c-bf76-1781b2735d23
+          role: system
+          text: 我会给你两个错误信息数据，比对一下，如果意思一样，则输出是，否则输出否
+        - id: 9830f910-65c0-4304-b8b4-f68d8888acdd
+          role: user
+          text: '错误信息1：{{#1777904460153.result#}}
+
+            错误信息2：{{#1777452407168.errors#}}'
+        reasoning_format: separated
+        selected: false
+        title: LLM
+        type: llm
+        vision:
+          enabled: false
+      height: 89
+      id: '1777455753176'
+      parentId: '1777452407168'
+      position:
+        x: 1932
+        y: 161
+      positionAbsolute:
+        x: 950.5875522370911
+        y: 384.1250140146884
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: 8200ea9b-5adb-4481-8723-e75c2da72ea9
+            value: 是
+            varType: string
+            variable_selector:
+            - '1777455753176'
+            - text
+          id: 'true'
+          logical_operator: and
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        selected: false
+        title: 条件分支 2
+        type: if-else
+      height: 125
+      id: '1777456141231'
+      parentId: '1777452407168'
+      position:
+        x: 2230
+        y: 191
+      positionAbsolute:
+        x: 1248.5875522370911
+        y: 414.1250140146884
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: constant
+          operation: +=
+          value: 1
+          variable_selector:
+          - '1777452407168'
+          - erross_number
+          write_mode: over-write
+        loop_id: '1777452407168'
+        selected: false
+        title: 变量赋值 2
+        type: assigner
+        version: '2'
+      height: 85
+      id: '1777456162993'
+      parentId: '1777452407168'
+      position:
+        x: 2590.9331015876132
+        y: 108.06689841238688
+      positionAbsolute:
+        x: 1609.5206538247044
+        y: 331.1919124270753
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: constant
+          operation: set
+          value: 0
+          variable_selector:
+          - '1777452407168'
+          - erross_number
+          write_mode: over-write
+        loop_id: '1777452407168'
+        selected: false
+        title: 变量赋值 3
+        type: assigner
+        version: '2'
+      height: 85
+      id: '1777456199294'
+      parentId: '1777452407168'
+      position:
+        x: 2538
+        y: 285
+      positionAbsolute:
+        x: 1556.5875522370911
+        y: 508.1250140146884
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1777904460153'
+          - result
+          variable_selector:
+          - '1777452407168'
+          - errors
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1777452697596'
+          - result
+          variable_selector:
+          - '1777452407168'
+          - result
+          write_mode: over-write
+        loop_id: '1777452407168'
+        selected: false
+        title: 变量赋值 4
+        type: assigner
+        version: '2'
+      height: 111
+      id: '1777456652778'
+      parentId: '1777452407168'
+      position:
+        x: 2964.4526144331576
+        y: 264.050290492573
+      positionAbsolute:
+        x: 1983.0401666702487
+        y: 487.17530450726144
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        selected: false
+        title: 退出循环
+        type: loop-end
+      height: 53
+      id: '1777473836977'
+      parentId: '1777452407168'
+      position:
+        x: 2238
+        y: 68
+      positionAbsolute:
+        x: 1256.5875522370911
+        y: 291.1250140146884
+      sourcePosition: right
+      targetPosition: left
+      type: custom-simple
+      width: 243
+      zIndex: 1002
+    - data:
+        code: "import re\n\ndef main(agent_result: str) -> str:\n    # 第一步：过滤掉 </think>\
+          \ 及之前的内容\n    pattern = r'.*?</think>'\n    result1 = re.sub(pattern, '',\
+          \ agent_result, flags=re.DOTALL).strip()\n\n    return {\n        \"result\"\
+          : result1\n    }"
+        code_language: python3
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 5
+        type: code
+        variables:
+        - value_selector:
+          - '1777453098412'
+          - text
+          value_type: string
+          variable: agent_result
+      height: 53
+      id: '1777904460153'
+      parentId: '1777452407168'
+      position:
+        x: 1632
+        y: 161
+      positionAbsolute:
+        x: 650.5875522370911
+        y: 384.1250140146884
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        code: "\nimport json\n\ndef main(arg1: str, arg2: str):\n    # arg1 为空或\"\
+          无\"时，直接用 arg2 初始化\n    if not arg1 or arg1.strip() == \"无\":\n        return\
+          \ {\"result\": json.dumps([json.loads(arg2)], ensure_ascii=False)}\n\n \
+          \   # 解析现有列表\n    history = json.loads(arg1)\n\n    # 超过3条则删除最旧的\n    if\
+          \ len(history) >= 3:\n        history.pop(0)\n\n    # 插入新数据\n    history.append(json.loads(arg2))\n\
+          \n    return {\"result\": json.dumps(history, ensure_ascii=False)}"
+        code_language: python3
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 5
+        type: code
+        variables:
+        - value_selector:
+          - '1777452407168'
+          - history_result
+          value_type: string
+          variable: arg1
+        - value_selector:
+          - '1777452697596'
+          - result
+          value_type: string
+          variable: arg2
+      height: 53
+      id: '1780322895180'
+      parentId: '1777452407168'
+      position:
+        x: 723.8312378961427
+        y: 297.66247579228553
+      positionAbsolute:
+        x: -257.58120986676613
+        y: 520.787489806974
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1780322895180'
+          - result
+          variable_selector:
+          - '1777452407168'
+          - history_result
+          write_mode: over-write
+        loop_id: '1777452407168'
+        selected: false
+        title: 变量赋值 5
+        type: assigner
+        version: '2'
+      height: 85
+      id: '1780323109615'
+      parentId: '1777452407168'
+      position:
+        x: 1026.8312378961427
+        y: 297.66247579228553
+      positionAbsolute:
+        x: 45.41879013323387
+        y: 520.787489806974
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: ≥
+            id: dcaff205-a59e-4bcd-8e60-f5b7bba26edd
+            value: '3'
+            varType: number
+            variable_selector:
+            - '1777452407168'
+            - erross_number
+          id: 'true'
+          logical_operator: and
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        selected: false
+        title: 条件分支 3
+        type: if-else
+      height: 125
+      id: '1780323140542'
+      parentId: '1777452407168'
+      position:
+        x: 2893.9331015876132
+        y: 108.06689841238688
+      positionAbsolute:
+        x: 1912.5206538247044
+        y: 331.1919124270753
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        agent_parameters:
+          instruction:
+            type: constant
+            value: "角色设定\n\r你是一个时序推理领域的专家。你的核心任务是分析历史事件时序推理记录，识别其陷入推理瓶颈的原因，并对瓶颈类型进行分类。\n\
+              \r\r规划能力 \n\r1. 记忆获取：你将会被给予连续三轮的时序关系和相关错误信息\n\r2. 错误对比分析：将获取的三轮时序关系表与错误信息逐一对比，针对每条错误信息，追踪其在三轮中的变化轨迹：\n\
+              \r2.1 该错误在哪一轮首次出现？\n\r2.2 后续轮次中该错误是否被修正？修正后是否复现？\n\r2.3 是否存在多条错误信息之间的关联，即修正一处导致另一处出现？\n\
+              \r3. 瓶颈类型识别：基于对比分析结果，将当前推理瓶颈归类为以下三种类型之一：\n\r3.1 错误冲突：两条或多条错误交替复现，修正一处导致另一处出现，表明对应时序错误之间存在冲突，无法同时满足。\n\
+              \r3.2 错误固化：一个或多个错误在连续多轮迭代中长期保持不变，说明模型已形成固定推理路径，难以进一步修正已有错误。\n\r4.建议：根据瓶颈类型，生成针对性的建议，为后续时序推理提供调整推理策略的依据，输出格式如下：\r\
+              \n历史错误信息：[历史错误信息]\n\r瓶颈类型：[错误冲突/ 错误固化]\r\n分析依据：[说明错误在三轮时序关系表中的变化]\r\n\
+              建议：[针对当前瓶颈类型的具体纠错建议]\n\r\r**记忆能力\r\n历史错误信息和目前生成的多轮时序关系表。\n\n\r\r\r"
+          model:
+            type: constant
+            value:
+              completion_params:
+                max_tokens: 30000
+                reasoning_effort: high
+                temperature: 1
+                thinking: true
+              mode: chat
+              model: deepseek-v4-pro
+              model_type: llm
+              provider: langgenius/deepseek/deepseek
+              type: model-selector
+          query:
+            type: constant
+            value: "我会为你提供所需的数据，请逐步推理，得出瓶颈分析结论。\n\r消息上下文:{{#1777340550206.context#}}\n\
+              多轮时序关系表：{{#1777340550206.history_result#}}\n时序关系知识：Before描述消息发出前已完成的动作。Overlap随消息同时发生的动作。After描述消息发出后的后续动作。时态决定正负，时间戳是由粗粒度偏移量、细粒度偏移量和消息发送时间计算得到的，粗粒度时间戳是根据语义和常识计算的，细粒度时间戳则是为了进一步划分同一粗粒度时间偏移量下的先后顺序。\r\
+              \n历史错误信息：{{#1777452407168.errors#}}"
+          tools:
+            type: constant
+            value:
+            - enabled: true
+              extra:
+                description: 运行一段代码并返回结果。当您使用较低质量的模型时，请确保有一些提示帮助 LLM 理解如何编写代码。
+              parameters:
+                code:
+                  auto: 1
+                  value: null
+                language:
+                  auto: 1
+                  value: null
+              provider_name: code
+              provider_show_name: code
+              schemas:
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: The programming language of the code
+                  ja_JP: The programming language of the code
+                  pt_BR: A linguagem de programação do código
+                  zh_Hans: 代码的编程语言
+                label:
+                  en_US: Language
+                  ja_JP: Language
+                  pt_BR: Idioma
+                  zh_Hans: 语言
+                llm_description: language of the code, only "python3" and "javascript"
+                  are supported
+                max: null
+                min: null
+                name: language
+                options:
+                - icon: null
+                  label:
+                    en_US: Python3
+                    ja_JP: Python3
+                    pt_BR: Python3
+                    zh_Hans: Python3
+                  value: python3
+                - icon: null
+                  label:
+                    en_US: JavaScript
+                    ja_JP: JavaScript
+                    pt_BR: JavaScript
+                    zh_Hans: JavaScript
+                  value: javascript
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              - auto_generate: null
+                default: null
+                form: llm
+                human_description:
+                  en_US: The code to be executed
+                  ja_JP: The code to be executed
+                  pt_BR: O código a ser executado
+                  zh_Hans: 要执行的代码
+                label:
+                  en_US: Code
+                  ja_JP: Code
+                  pt_BR: Código
+                  zh_Hans: 代码
+                llm_description: code to be executed, only native packages are allowed,
+                  network/IO operations are disabled.
+                max: null
+                min: null
+                name: code
+                options: []
+                placeholder: null
+                precision: null
+                required: true
+                scope: null
+                template: null
+                type: string
+              settings: {}
+              tool_description: 运行一段代码并返回结果。当您使用较低质量的模型时，请确保有一些提示帮助 LLM 理解如何编写代码。
+              tool_label: 代码解释器
+              tool_name: simple_code
+              type: builtin
+        agent_strategy_label: FunctionCalling
+        agent_strategy_name: function_calling
+        agent_strategy_provider_name: langgenius/agent/agent
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        meta:
+          minimum_dify_version: 1.7.0
+          version: 0.0.2
+        output_schema: {}
+        plugin_unique_identifier: langgenius/agent:0.0.37@a5dcc6ea00bca23439b49ff7d65704f3f5dd6ce2ca353205e62278e2148d84b6
+        selected: false
+        title: Agent 3
+        tool_node_version: '2'
+        type: agent
+      height: 189
+      id: '1780323164199'
+      parentId: '1777452407168'
+      position:
+        x: 3302.7993047628393
+        y: 97.23967308764782
+      positionAbsolute:
+        x: 2321.3868569999304
+        y: 320.36468710233623
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        isInIteration: false
+        isInLoop: true
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1780323600164'
+          - result
+          variable_selector:
+          - '1777452407168'
+          - errors
+          write_mode: over-write
+        loop_id: '1777452407168'
+        selected: false
+        title: 变量赋值 6
+        type: assigner
+        version: '2'
+      height: 85
+      id: '1780323584543'
+      parentId: '1777452407168'
+      position:
+        x: 3905.7993047628393
+        y: 97.23967308764782
+      positionAbsolute:
+        x: 2924.3868569999304
+        y: 320.36468710233623
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        code: "import re\n\ndef main(agent_result: str) -> str:\n    # 第一步：过滤掉 </think>\
+          \ 及之前的内容\n    pattern = r'.*?</think>'\n    result1 = re.sub(pattern, '',\
+          \ agent_result, flags=re.DOTALL).strip()\n\n    return {\n        \"result\"\
+          : result1\n    }\n"
+        code_language: python3
+        isInIteration: false
+        isInLoop: true
+        loop_id: '1777452407168'
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 6
+        type: code
+        variables:
+        - value_selector:
+          - '1780323164199'
+          - text
+          value_type: string
+          variable: agent_result
+      height: 53
+      id: '1780323600164'
+      parentId: '1777452407168'
+      position:
+        x: 3605.7993047628393
+        y: 97.23967308764782
+      positionAbsolute:
+        x: 2624.3868569999304
+        y: 320.36468710233623
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    viewport:
+      x: -2233.742180375673
+      y: 365.7571880081093
+      zoom: 0.8312378961427878
+  rag_pipeline_variables: []
